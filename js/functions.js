@@ -1,111 +1,73 @@
-console.log("Funciones")
+/**
+ * Convertidor de temperatura
+ * Generar una función, que reciba (grados, entrada, salída ) 
+ * Default es ºC a ºF
+ * p.ej. (100,c,f) -> 100 ºC a ºF -> Default
+ * p.ej. (100,f,c) -> 100 ºF a ºC
+ * C to F -> (celsius*9)/5 + 32
+ * F to C -> ((fahrenheit - 32)*5)/9
+ *
+ */
 
-// DEFINICION DE LA FUNCION 
-   // function myFunction(){
-        //Sentencias
-   // }
-
-// MANDAR LLAMAR A LA FUNCION
-    //myFunction()
-
-
-    //let stringOne="smtp"
-    //let stringTwo="aeiou"
-    //
-    //function addStrings(strOne,strTwo){
-//
-    //    for (let i=0;i<strOne.length;i++){
-    //        let res=''
-    //        for (let j=0;j<strTwo.length;j++){
-    //            res+=`${strOne[i]}${strTwo[j]} ;`
-    //            
-    //        }
-    //        console.log(res)
-    //    }
-    //}
-    //
-    //addStrings(stringOne,stringTwo)
+        //function celsiusToF(temp,initial="c",finish="f") {
+        //    if (initial === "f") {
+        //       return console.log(((temp - 32)*5)/9)
+        //    }else{
+        //        return console.log((temp*9)/5 + 32)
+        //    }
+        //    
+        //    
+        //}
+        //
+        //celsiusToF(100,"f","c")
 
 
+/**
+ * Ejercicio
+ * Simular el funcionamiento de un cajero
+ * 
+ * considerar estas acciones
+ * 1. Retiro de efectivo (cantidad)
+ * 2. Depósito (cantidad)
+ * 3. Consulta de saldo () 
+ * 4. Traspasar a la cuenta 1234 $500 (cuenta, cantidad)
+ * 
+ * Datos iniciales
+ * Saldo inicial: $2000
+ * Consultas de saldo = 2000
+ * Depósitos = 0
+ * Retiros = 0
+ * 
+ * 
+ * Pasos a ejecutar
+ * 1. Depositar 2000
+ * 2. Retirar 450
+ * 3. Consultar saldo
+ * 4. Retirar 400
+ * 5. Consultar saldo
+ * 
+ */
 
-    //let phrase=window.prompt("Dame una frase y te dire si es palindromo").toLowerCase()
-    //
-//
-    //function checkPalindromo(phraseToCheck) {
-    //    let phraseChecked=''
-    //    let phraseWhitOutSpaces=''
-    //    for (let j=0;j<phrase.length;j++){
-    //        if(phrase[j]===' '){
-    //            continue
-    //        }else{
-    //            phraseWhitOutSpaces += phrase[j]
-    //        }
-    //    }
-    //
-    //    for (let i=phraseWhitOutSpaces.length-1;i>=0;i--){
-    //       phraseChecked += phraseWhitOutSpaces[i]
-    //
-    //    }
-    //
-    //       if (phraseChecked===phraseWhitOutSpaces){
-    //          return console.log("Es palindromo")
-    //       }else{
-    //        return console.log("No es palindromo")
-    //        }
-    //}
-    //
-    //checkPalindromo(phrase)
-
-
+function retiro(cant) {
     
-    function getTable(table) {
-        for(i=1;i<=10;i++){
-            let resultado=table*i
-            console.log(`${table} x ${i} = ${resultado}` )
-        }
-    }
-    let num=parseInt(window.prompt("Ingrese la tabla multiplicar que desea conocer"))
-    getTable(num)
+    return cant>saldoInicial ? console.log(`Ya no cuentas con saldo suficiente para realizar el retiro, saldo actual ${saldoInicial}`):saldoInicial-=cant
+}
+function deposito(cantDep) {
+    return cantDep<=0 ? 
+    console.log("Ingrese una cantidad mayor a 0"):
+    saldoInicial+=cantDep 
     
+}
 
-    //let cal =parseInt(window.prompt("Ingrese la calificacion"));
-    // 
-    //function getCalif(calInNumber) {
-    //   switch (calInNumber){
-    //       case 100:
-    //           console.log("Tu calificacion es A+")
-    //           break
-    //       case 90:
-    //           console.log("Tu calificacion es A")
-    //           break
-    //       case 80:
-    //           console.log("Tu calificacion es B")
-    //           break
-    //       case 70:
-    //           console.log("Tu calificacion es C")
-    //           break
-    //       case 50:
-    //           console.log("Tu calificacion es E")
-    //           break
-    //       default:
-    //           console.log("Tu calificacion es muy baja")
-    //   }
-    //    
-    //}
-    //getCalif(cal)
+function traspasar(cuenta,cant) {
+   return cant>saldoInicial ? console.log("No cuentas con el saldo suficiente para traspasar"):saldoInicial-=cant
+}
+function consultaSaldo() {
 
-    //let num=parseInt(window.prompt("Dame un numero"))
-//
-    //function numInteger(numInteger) {
-    //           
-    //           while (numInteger>=0) {
-    //        
-    //               console.log(numInteger)
-    //               numInteger=parseInt(window.prompt("Dame otro numero"))
-    //               
-    //           }
-    //        
-    //}
-    // numInteger(num)
-               
-     
+    return console.log(`Tienes de saldo:  ${saldoInicial}`)
+}
+
+let saldoInicial=2000
+
+retiro(600)
+consultaSaldo()
