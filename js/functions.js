@@ -48,26 +48,46 @@
  * 
  */
 
-function retiro(cant) {
-    
-    return cant>saldoInicial ? console.log(`Ya no cuentas con saldo suficiente para realizar el retiro, saldo actual ${saldoInicial}`):saldoInicial-=cant
-}
-function deposito(cantDep) {
-    return cantDep<=0 ? 
-    console.log("Ingrese una cantidad mayor a 0"):
-    saldoInicial+=cantDep 
-    
-}
+        //function retiro(cant) {
+        //    
+        //    return cant>saldoInicial ? console.log(`Ya no cuentas con saldo suficiente para realizar el retiro, saldo actual ${saldoInicial}`):saldoInicial-=cant
+        //}
+        //function deposito(cantDep) {
+        //    return cantDep<=0 ? 
+        //    console.log("Ingrese una cantidad mayor a 0"):
+        //    saldoInicial+=cantDep 
+        //    
+        //}
+        //
+        //function traspasar(cuenta,cant) {
+        //   return cant>saldoInicial ? console.log("No cuentas con el saldo suficiente para traspasar"):saldoInicial-=cant
+        //}
+        //function consultaSaldo() {
+        //
+        //    return console.log(`Tienes de saldo:  ${saldoInicial}`)
+        //}
+        //
+        //let saldoInicial=2000
+        //
+        //retiro(600)
+        //consultaSaldo()
 
-function traspasar(cuenta,cant) {
-   return cant>saldoInicial ? console.log("No cuentas con el saldo suficiente para traspasar"):saldoInicial-=cant
-}
-function consultaSaldo() {
+
+const retiro = function (cant) {
+        return cant>saldoInicial ? console.log(`Ya no cuentas con saldo suficiente para realizar el retiro, saldo actual ${saldoInicial}`):saldoInicial-=cant
+    }
+
+const deposito = function (cantDep) {
+        return cantDep<=0 ? 
+        console.log("Ingrese una cantidad mayor a 0"):
+        saldoInicial+=cantDep 
+                    
+    }
+const traspasar = function (cuenta,cant) {
+       return cant>saldoInicial ? console.log("No cuentas con el saldo suficiente para traspasar"):saldoInicial-=cant
+    }
+const consultaSaldo= function () {
 
     return console.log(`Tienes de saldo:  ${saldoInicial}`)
 }
-
-let saldoInicial=2000
-
-retiro(600)
-consultaSaldo()
+    
