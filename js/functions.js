@@ -91,3 +91,19 @@ const consultaSaldo= function () {
     return console.log(`Tienes de saldo:  ${saldoInicial}`)
 }
     
+
+        //// FUNCIONES COMO EXPRESION
+        //    let age =function () {
+        //        console.log('Some')
+        //    }
+        //
+        //// FUNCIONES COMO PARAMETRO
+        //
+        //    function myFunctionOne() {
+        //        console.log('Soy la funcion 1')
+        //    }
+        //
+        //    function myFunctionTwo(callFunction) {
+        //        console.log('Soy la funcion 2 co n una funcion 1')
+        //    }
+        //    myFunctionTwo(myFunctionOne)
