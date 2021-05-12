@@ -1,7 +1,13 @@
+
+let saldoInicial=2000
+let consultas=0
+let depositos= 0
+let retiros = 0
+
 const retiro = (cant) =>(
     retiros++, cant>saldoInicial ? 
                console.log(`Ya no cuentas con saldo suficiente para realizar el retiro, saldo actual ${saldoInicial}`):
-               console.log(`Se retiro de manera correcta la cantidad de ${cant}, saldo actual: ${saldoInicial-=cant} `)
+               console.log(`Se retiro de manera correcta la cantidad de ${cant}, saldo actual: ${saldoInicial-=cant}`)
 )
     
 
@@ -23,7 +29,4 @@ const consultaSaldo= () => (
 
 
 
- let saldoInicial=2000
- let consultas=0
- let depositos= 0
- let retiros = 0
+ 
