@@ -1,78 +1,80 @@
-console.log ("METODOS DE ARRAY")
+console.log ("OBJETOS")
 
-// .map() -> array computado, tiene la misma longitud del original, transforma cada item en uno nuevo.
-
-
-
-// funcion que dado un array
-// genere un nuevo array con los mismos numeros como strings
-    //let arrNum=[1,2,3,4,5,6]
-    //
-    //const convertArr=arr=>{
-    //  return newItem = arr.map( item=>{
-    //      return item.toString()
-    //    }
-    //    
-    //    )
-      //
-    //}
-    //console.log(convertArr(arrNum))
+// TEORIA
 
 
 
-      //let names=["aaron","javier","juan"]
-      //
-      //const capitalizerNm=arr=>{
-      //  return neeItem=arr.map(item=>{
-      //    return item.indexOf(0).toUpperCase()
-      //  })
-      //}
-      //console.log(capitalizerNm(names))
+//EJERCIOS
+
+//let pedidos = [
+//  ['ensalada de pepinos','paella','platano', 100'],
+//  ['ensalada de tomates','pescado','helado', 120],
+//  ['ensalada simple','paella','yogurt', 80],
+//  ['ensalada simple','enchiladas','yogurt', 80],
+//  ['ensalada cesar','salmón','platano', 100],
+//]
+
+let pedidos=[
+  {
+    entrada:'ensalada de pepinos',
+    principal:'paella',
+    postre:'platano',
+    precio:100
+  },
+  {
+    entrada:'ensalada de tomates',
+    principal:'pescado',
+    postre:'helado',
+    precio:120
+  },
+  {
+    entrada:'ensalada simple',
+    principal:'paella',
+    postre:'yogurt',
+    precio:80
+  },
+  {
+    entrada:'ensalada de pepinos',
+    principal:'enchiladas',
+    postre:'yougurt',
+    precio:80
+  },
+  {
+    entrada:'ensalada cesar',
+    principal:'salmon',
+    postre:'platano',
+    precio:100
+  }
+]
+
+const principal=arr=>{
+  return arr.reduce((acc,item)=>{
+            if (item.principal==='paella') {
+                
+               return acc+1
+              
+            }
+              return acc
+            
+            
+    },0)
+}
+
+console.log(principal(pedidos))
 
 
+//for in  (en donde lo quieres,in, objeto que va a iterar)
+let objPedido={
+  entrada:'ensalada cesar',
+  principal:'salmon',
+  postre:'platano',
+  precio:100
+}
 
-// Dados 2 arrays
-// array de nombres
-// array de apellidos
-// Crear una funcion que reciba los 2 arrays, 
-// y retorne un array con los nombres completos
+for(key in objPedido){
+  console.log(key,objPedido(key))
+}
 
-          //let names=["Aaron","Jorge"]
-          //let surNames=["Mendoza","Camarillo"]
-          //
-          //const concatNames = (names,surNames)=>{
-          //  return completeName=names.map(function (item,index) {
-          //    return item.concat(this[index])
-          //  },surNames)
-          //}
-          //console.log(concatNames(names,surNames))
-
-///////METODO REDUCE//////
-
-      //let arrNum=[1,2,3]
-      //
-      //const toString=arr=>{
-      //  return newArr = arr.reduce((acc,item)=>{
-      //    return acc+item
-      //  },"")
-      //}
-      //console.log(toString(arrNum))
-
-     
-
-    let myCar=
-        [
-          ["Reloj", 500] , 
-          ["Reloj", 300] , 
-          ["Reloj", 1200]  
-        ]
-    
-    const calculeTotal=arr=>{
-        return suma=arr.reduce((acc,item)=>{
-          return acc+item[1]
-        } 
-          
-          ,0)
-    }
-
-    console.log(calculeTotal(myCar))
+Object.keys()
+Object.entries()
+Object.values()
