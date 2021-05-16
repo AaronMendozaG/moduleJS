@@ -18,15 +18,15 @@ arrayReduce([1,2,3,4],[1,2]).
 -> 13
 */
 
-let arrayOne=[1,2,3,4]
-let arrayTwo=[1,2]
-let arrayConcat=arrayOne.concat(arrayTwo)
-let suma=0
-
-arrayConcat.forEach(item => {
-    suma += item
-})
-console.log(suma)
+        //let arrayOne=[1,2,3,4]
+        //let arrayTwo=[1,2]
+        //let arrayConcat=arrayOne.concat(arrayTwo)
+        //let suma=0
+        //
+        //arrayConcat.forEach(item => {
+        //    suma += item
+        //})
+        //console.log(suma)
 
 
 
@@ -36,5 +36,23 @@ con los numeros repetidos en los 2 arrays
 arrayReduce([1,2,3,4],[1,2]). 
 -> [1,2]
 */
+
+let arrayOne=[1,2,3,4]
+let arrayTwo=[1,2,4]
+
+const getRepeat=(arrOne,arrTwo)=>{
+     return getNewArr=arrOne.filter(item=>{
+        if (arrTwo.includes(item)) {
+            return item
+        }
+    }
+
+    )
+}
+
+console.log(getRepeat(arrayOne,arrayTwo))
+
+
+
 
 
