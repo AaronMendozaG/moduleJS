@@ -47,3 +47,53 @@ const getVotes=arr=>totalVotes=arr.reduce((acc,item)=>(item[1]===true ? acc++ :'
     Funcion que devuelve los pedidos que tengen un precio superior a 90 
 */
 
+let orders=[ 
+    ['ensalada de pepinos','paella','platano', 100],
+    ['ensalada de tomates','pescado','helado', 120],
+    ['ensalada simple','paella','yogurt', 80],
+    ['ensalada simple','enchiladas','yogurt', 80],
+    ['ensalada cesar','salmón','platano', 100]
+   ]
+                    //const principal=arr=>{
+                    //platoPrincipal=arr.reduce((acc,item,arr)=>{
+                    //    if (item[1]==='paella') {
+                    //        
+                    //    return acc+1
+                    //    
+                    //    }
+                    //    
+                    //},0)
+                    //}
+
+const principal=arr=>platoPrincipal=arr.reduce((acc,item)=>item[1]==='paella' ? acc+1 :'',0)
+    
+
+            //const getDessert=arr=>{
+            //return dessert=arr.filter(item=>{
+            //    if (item[2]==='platano' || item[2]==='helado'){
+            //        return item
+            //    }   
+            //})
+            //}
+
+            const getDessert=arr=>dessert=arr.filter(item=>(item[2]==='platano' || item[2]==='helado') ? item : '')
+            console.log(getDessert(orders))
+
+
+
+
+
+
+
+
+            //const getUpTo=arr=>{
+            //    return dessert=arr.filter(item=>{
+            //        if (item[3]>90){
+            //           return item
+            //        }   
+            //   })
+            //   }
+
+
+            const getUpTo=arr=>dessert=arr.filter(item=>item[3]>90 ? item : '')
+            console.log(getUpTo(orders))
