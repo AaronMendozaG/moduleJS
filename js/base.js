@@ -1,4 +1,18 @@
 console.log ("METODOS DE ARRAY")
+// Inicio ok
+// condicion de parada (fin) 
+// counter -> aumento / decremento
+// for(let i = 0; i < arrFor.length ; i++) {
+//    console.log(arrFor[i]) 
+// }
+// arrFor.forEach(function() {
+//    // sentencias 
+// })
+
+// arrFor.forEach((currentValue) => {
+//     console.log(currentValue)
+// })
+
 
 
 // Ejercicio 1 .forEach()
@@ -26,9 +40,9 @@ let highNumber=arrayNumbers[0]
 // output -> ['1,','2','3','4','5']
 
 let arrToConvert=[1,6,78,9,0]
-let newArr=''
+let newArr=[]
   arrToConvert.forEach((item) =>{
-    newArr+= item.toString()
+    newArr.push(item.toString()) 
     
     })
     console.log(newArr) 
