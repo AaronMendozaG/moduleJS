@@ -47,3 +47,102 @@ let newArr=[]
     })
     console.log(newArr) 
 
+// funcion que dados 2 parametros
+// p1 = año de inicio
+// p2 = año de fin
+// y devuelva un array con los años que son bisiestos
+// que se encuentran en ese rango
+// [1990, 2000, 2001, 2020]
+// -> [2000,2020]
+
+const convertLeapYear = (startYear, endYear) => {
+  let filteredYears = []
+  for(let year = startYear; year <= endYear; year++){
+      if(
+          (year % 4 === 0 && year % 100 !== 0) || 
+          (year % 100 === 0 && year % 400 === 0)
+      ){
+          filteredYears.push(year)
+      }
+  }
+  // return arr.filter(year => {
+  //     return (year % 4 === 0 && year % 100 !== 0) || (year % 100 === 0 && year % 400 === 0)
+  // })
+
+  return filteredYears 
+}
+
+
+// arrFor.filter()
+// 
+
+// operador ternario
+// arrow functions
+/*
+function filtrarPares (arrayAFiltrar) {
+  let arrayfilter = []
+  arrayfilter = arrayAFiltrar.filter( function (currenValue) {
+      if ( currenValue % 2 !== 0 ) {
+          return currenValue
+      }
+  })
+  return arrayfilter
+}
+const filtrarPares = (arrayAFiltrar) => {
+  return  arrayAFiltrar.filter( (currenValue) => {
+      if ( currenValue % 2 !== 0 ) {
+          return currenValue
+      }
+  })
+}
+const filtrarPares = arr => arr.filter( () => {
+  if ( currenValue % 2 !== 0 ) {
+      return currenValue
+  }
+})
+const filtrarPares = arr => arr.filter( cv => cv % 2 !== 0 ? cv : '' )
+*/
+// const filtrarPares = arr => arr.filter( cv => cv % 2 !== 0 && cv > 2 )
+// let arrayTofilter = [1,2,3,4,5] 
+// let responseFiltrarPares = filtrarPares(arrayTofilter)
+// console.log(responseFiltrarPares)
+
+
+let arrStrAndNumbers = [1, "2", 3, "4", 'otro', 9, [1,2] ]
+/*
+function filterStrings(arr) {
+  return arr.filter(function (currentValue) {
+      if(typeof currentValue === "number") {
+          return currentValue
+      }
+  })
+}
+const filterStrings = arr => { arr.filter(currentValue => {
+      if(typeof currentValue === "number") {
+          return currentValue
+      }
+  })
+}
+const filterStrings = arr => { arr.filter(currentValue => {
+  typeof currentValue === "number" ? currentValue : ''
+})
+*/
+
+const filterStrings = arr =>  arr.filter( currentValue  =>  typeof currentValue === "number" )
+
+
+
+
+
+// console.log(this)
+
+// const showThis = (arr, arr2) => {
+//     arr.forEach(function(value, index, arr) {
+//         console.log(this)
+//     }, arr2)
+// }
+
+// let arrThis = [1,2,3,4]
+// let arrThis2 = [1,2]
+// showThis(arrThis, arrThis2)
+
