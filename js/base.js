@@ -10,8 +10,9 @@ console.log ("METODOS DE ARRAY")
 let arrayNumbers=[2,5,6,4,8,3,9,54]
 let highNumber=arrayNumbers[0]
 
-arrayNumbers.forEach((item)=> item>highNumber ? highNumber=item : "")
-console.log(highNumber)
+  arrayNumbers.forEach((item)=> item>highNumber ? highNumber=item : "")
+  console.log(highNumber)
+
 
 
 
