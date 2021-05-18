@@ -78,3 +78,38 @@ for(key in objPedido){
 Object.keys()
 Object.entries()
 Object.values()
+// for in
+// for(item in objPedido) {
+//     if(item === 'coords' || typeof objPedido[item] === "object" ) {
+//         console.log(`lat: ${ objPedido[item][0]} , long: ${ objPedido[item][1]}`)
+//     } else {
+//         console.log(objPedido[item])
+//     }
+// }
+
+
+let llaves = Object.keys(objPedido)
+console.log(llaves)
+// ["entrada", "principal", "postre", "precio", "coords", "precio2"]
+
+// keys.forEach((item) => {
+//     if(item === 'coords' || typeof objPedido[item] === "object" ) {
+//         console.log(`lat: ${ objPedido[item][0]} , long: ${ objPedido[item][1]}`)
+//     } else {
+//         console.log(objPedido[item])
+//     }
+// })
+
+// let entries = Object.entries(objPedido)
+// console.log(entries)
+
+let values = Object.values(objPedido)
+console.log(values)
+
+Object.values(objPedido).forEach((value, index, array) => {
+    console.log(value)
+})
+
+
+
+//SPREAD OPERATOR
