@@ -1,71 +1,4 @@
 console.log('Eventos')
-
-// addEventListener
-// preventDefault()
-// stopPropagation()
-
-
-
-
-
-// events
-
-// click
-
-// const funcionDeClick = () => {
-//     console.log('click desde event listener')
-// }
-// buttonClick.addEventListener('click', funcionDeClick)
-
-//let buttonClick = document.getElementById('eventlistener')
-//
-//buttonClick.addEventListener('click', () => {
-//    console.log('click desde event listener')
-//})
-//
-//buttonClick.addEventListener('focus', () => {
-//    console.log('focus desde event listener')
-//})
-//
-//buttonClick.addEventListener('mouseenter', () => {
-//    console.log('mouseenter desde event listener')
-//})
-//
-//buttonClick.addEventListener('mousemove', () => {
-//    console.log('mousemove desde event listener')
-//})
-//
-//buttonClick.addEventListener('mouseleave', () => {
-//    console.log('mouseleave desde event listener')
-//})
-
-
-// keyboard events
-
-// inputSearch.addEventListener('keydown', function(){
-//     console.log('keydown')
-// })
-// inputSearch.addEventListener('keypress', function(){
-//     console.log('keypress')
-// })
-
-//let inputSearch = document.getElementById('search')
-//let textSearch = document.getElementById('searchtext')
-//inputSearch.addEventListener('keyup', function(){
-//    let text = inputSearch.value
-//    textSearch.innerText = text 
-//})
-
-
-
-
-
-// keydown -> al presionar
-// keypress -> al llegar al tope de la tecla
-// keyup -> al soltar la tecla
-
-
-
 let koders = [
     {
         id: 23,
@@ -78,29 +11,34 @@ let koders = [
     {
         id: 212,
         name:'fer'
-    }
-
-]
-let listKoders = [...koders]
-let enrolledKoders = [
+    },
     {
         id: 20,
         name:'rose'
-    }]
+    }
+
+]
+
+
+let listKoders = [...koders]
+let enrolledKoders = [{
+    id: 234,
+    name:'Yair'
+}]
 
 // print table koders
 
 const printTableKoders = (arrKoders, selector, type) => {
+    // temp
     let accKodersList = ''
-    arrKoders.forEach((koder,index) => {
-
+    arrKoders.forEach(( koder, index) => {
         if(type === 'list'){
             accKodersList += `
             <tr class="trkoder_${koder.id}">
                 <td>${koder.id}</td>
                 <td>${koder.name}</td>
                 <td>
-                    <button class="btn btn-primary " onclick="enrolledkoder(${koder.id}) data-id="${koder.id} data-index="${index}">Inscribir</button>
+                    <button class="btn btn-primary enrolledKoderButton" data-id="${koder.id}" data-index="${index}">Inscribir</button>
                 </td>
             </tr>
             `
@@ -110,7 +48,7 @@ const printTableKoders = (arrKoders, selector, type) => {
                 <td>${koder.id}</td>
                 <td>${koder.name}</td>
                 <td>
-                    <button onclick="removekoder(${koder.id})">Dar de baja</button>
+                    <button class="btn btn-warning removeKoderButton" data-id="${koder.id}" data-index="${index}">Dar de baja</button>
                 </td>
             </tr>
             `
@@ -121,69 +59,51 @@ const printTableKoders = (arrKoders, selector, type) => {
     sel.innerHTML = accKodersList
 } 
 
+const updateTable = () => {
+    printTableKoders(listKoders, '.table__koders tbody', 'list')
+    printTableKoders(enrolledKoders, '.table__kodersEnrrolled tbody', 'enrolled')
+}
 
-//const enrolledkoder = (idKoder) => {
-//    // get koder data
-//    let koderItem = listKoders.filter(koder => {
-//        if(koder.id === idKoder){
-//            return koder
-//        }
-//    })
-//    enrolledKoders.push(koderItem[0])
-//    console.log(koderItem)
-//
-//    // filter array without koder
-//    let kodersNotDeleted = listKoders.filter(koder => {
-//        if(koder.id !== idKoder){
-//            return koder
-//        }
-//    })
-//    console.log(kodersNotDeleted)
-//    listKoders = [...kodersNotDeleted]
-//
-//    // lista de koders lado izquierdo
-//    console.log(listKoders)
-//    // lista de koders lado derecho
-//    console.log(enrolledKoders)
-//
-//    printTableKoders(listKoders, '.table-postulados tbody', 'list')
-//    printTableKoders(enrolledKoders, '.table-inscritos tbody', 'enrolled')
-//}
-//
-//
-//const removekoder = (idKoder) => {
-//    // su codigo aquí
-//    // get koder data
-//    let koderItemTwo = enrolledKoders.filter(koder => {
-//        if(koder.id === idKoder){
-//            return koder
-//        }
-//    })
-//    listKoders.push(koderItemTwo[0])
-//    
-//
-//   // filter array without koder
-//   let kodersNotDeletedTwo = enrolledKoders.filter(koder => {
-//       if(koder.id !== idKoder){
-//           return koder
-//       }
-//   })
-//   enrolledKoders = [...kodersNotDeletedTwo]
-//
-//    // lista de koders lado izquierdo
-//    console.log(listKoders)
-//    // lista de koders lado derecho
-//    console.log(enrolledKoders)
-//
-//    printTableKoders(listKoders, '.table-postulados tbody', 'list')
-//    printTableKoders(enrolledKoders, '.table-inscritos tbody', 'enrolled')
-//
-//
-//}
+let wrappKoderList = document.querySelector('.table__koders tbody')
+wrappKoderList.addEventListener('click', (event) => {
+    if( event.target.classList.contains('enrolledKoderButton') ) {
 
-printTableKoders(listKoders, '.table-postulados', 'list')
-printTableKoders(enrolledKoders, '.table-inscritos tbody', 'enrolled')
+        let idKoder = parseInt(event.target.dataset.id)
+
+        let koderItem = listKoders.filter(koder => koder.id === idKoder )
+        enrolledKoders.push(koderItem[0])
+
+        let kodersNotDeleted = listKoders.filter(koder => koder.id !== idKoder)
+        listKoders = [...kodersNotDeleted]
+
+        updateTable()
+    }
+})
 
 
 
+let wrappKoderEnrrolled = document.querySelector('.table__kodersEnrrolled tbody')
+wrappKoderEnrrolled.addEventListener('click', (element) => {
+    console.log(element.target.classList)
+    if(element.target.classList.contains('removeKoderButton')) {
+        let idKoder = parseInt(element.target.dataset.id)
+        
+        let enrrolledKoder = enrolledKoders.filter( koder => koder.id == idKoder )
+        let newdataEnrrolledKoder = enrolledKoders.filter( koder => koder.id !== idKoder )
 
+        listKoders.push(enrrolledKoder[0])
+        enrolledKoders = [...newdataEnrrolledKoder]
+        
+        updateTable()
+    }
+})
+
+let btnLimpiar=document.querySelector('.btn-limpiar')
+btnLimpiar.addEventListener('click',()=>{
+    //listKoders= listKoders.concat(enrolledKoders)
+    listKoders= [...listKoders,...enrolledKoders]
+    enrolledKoders=[]
+    updateTable()
+})
+ 
+updateTable()
