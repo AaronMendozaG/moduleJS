@@ -78,21 +78,21 @@ let koders = [
     {
         id: 212,
         name:'fer'
-    },
-    {
-        id: 20,
-        name:'rose'
     }
 
 ]
 let listKoders = [...koders]
-let enrolledKoders = []
+let enrolledKoders = [
+    {
+        id: 20,
+        name:'rose'
+    }]
 
 // print table koders
 
 const printTableKoders = (arrKoders, selector, type) => {
     let accKodersList = ''
-    arrKoders.forEach(koder => {
+    arrKoders.forEach((koder,index) => {
 
         if(type === 'list'){
             accKodersList += `
@@ -100,7 +100,7 @@ const printTableKoders = (arrKoders, selector, type) => {
                 <td>${koder.id}</td>
                 <td>${koder.name}</td>
                 <td>
-                    <button onclick="enrolledkoder(${koder.id})">Inscribir</button>
+                    <button class="btn btn-primary " onclick="enrolledkoder(${koder.id}) data-id="${koder.id} data-index="${index}">Inscribir</button>
                 </td>
             </tr>
             `
@@ -122,64 +122,64 @@ const printTableKoders = (arrKoders, selector, type) => {
 } 
 
 
-const enrolledkoder = (idKoder) => {
-    // get koder data
-    let koderItem = listKoders.filter(koder => {
-        if(koder.id === idKoder){
-            return koder
-        }
-    })
-    enrolledKoders.push(koderItem[0])
-    console.log(koderItem)
-
-    // filter array without koder
-    let kodersNotDeleted = listKoders.filter(koder => {
-        if(koder.id !== idKoder){
-            return koder
-        }
-    })
-    console.log(kodersNotDeleted)
-    listKoders = [...kodersNotDeleted]
-
-    // lista de koders lado izquierdo
-    console.log(listKoders)
-    // lista de koders lado derecho
-    console.log(enrolledKoders)
-
-    printTableKoders(listKoders, '.table-postulados tbody', 'list')
-    printTableKoders(enrolledKoders, '.table-inscritos tbody', 'enrolled')
-}
-
-
-const removekoder = (idKoder) => {
-    // su codigo aquí
-    // get koder data
-    let koderItemTwo = enrolledKoders.filter(koder => {
-        if(koder.id === idKoder){
-            return koder
-        }
-    })
-    listKoders.push(koderItemTwo[0])
-    
-
-   // filter array without koder
-   let kodersNotDeletedTwo = enrolledKoders.filter(koder => {
-       if(koder.id !== idKoder){
-           return koder
-       }
-   })
-   enrolledKoders = [...kodersNotDeletedTwo]
-
-    // lista de koders lado izquierdo
-    console.log(listKoders)
-    // lista de koders lado derecho
-    console.log(enrolledKoders)
-
-    printTableKoders(listKoders, '.table-postulados tbody', 'list')
-    printTableKoders(enrolledKoders, '.table-inscritos tbody', 'enrolled')
-
-
-}
+//const enrolledkoder = (idKoder) => {
+//    // get koder data
+//    let koderItem = listKoders.filter(koder => {
+//        if(koder.id === idKoder){
+//            return koder
+//        }
+//    })
+//    enrolledKoders.push(koderItem[0])
+//    console.log(koderItem)
+//
+//    // filter array without koder
+//    let kodersNotDeleted = listKoders.filter(koder => {
+//        if(koder.id !== idKoder){
+//            return koder
+//        }
+//    })
+//    console.log(kodersNotDeleted)
+//    listKoders = [...kodersNotDeleted]
+//
+//    // lista de koders lado izquierdo
+//    console.log(listKoders)
+//    // lista de koders lado derecho
+//    console.log(enrolledKoders)
+//
+//    printTableKoders(listKoders, '.table-postulados tbody', 'list')
+//    printTableKoders(enrolledKoders, '.table-inscritos tbody', 'enrolled')
+//}
+//
+//
+//const removekoder = (idKoder) => {
+//    // su codigo aquí
+//    // get koder data
+//    let koderItemTwo = enrolledKoders.filter(koder => {
+//        if(koder.id === idKoder){
+//            return koder
+//        }
+//    })
+//    listKoders.push(koderItemTwo[0])
+//    
+//
+//   // filter array without koder
+//   let kodersNotDeletedTwo = enrolledKoders.filter(koder => {
+//       if(koder.id !== idKoder){
+//           return koder
+//       }
+//   })
+//   enrolledKoders = [...kodersNotDeletedTwo]
+//
+//    // lista de koders lado izquierdo
+//    console.log(listKoders)
+//    // lista de koders lado derecho
+//    console.log(enrolledKoders)
+//
+//    printTableKoders(listKoders, '.table-postulados tbody', 'list')
+//    printTableKoders(enrolledKoders, '.table-inscritos tbody', 'enrolled')
+//
+//
+//}
 
 printTableKoders(listKoders, '.table-postulados', 'list')
 printTableKoders(enrolledKoders, '.table-inscritos tbody', 'enrolled')
