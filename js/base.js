@@ -105,5 +105,43 @@ btnLimpiar.addEventListener('click',()=>{
     enrolledKoders=[]
     updateTable()
 })
+let btnMostrar=document.querySelector('.btn-mostrar')
+btnMostrar.addEventListener('click',()=>{
+    
+    updateTable()
+})
+
+const addNewKoder=()=>{
+    
+    let idKoder=parseInt(document.querySelector('#idkoder').value)
+    let nameKoder=document.querySelector('#namekoder').value
+    if (idKoder=== "") {
+        window.alert("Escriba un ID de Koder")
+        return
+    } else if (nameKoder === "") {
+        window.alert("Escriba el nombre del  Koder")
+        return
+    }
+    var newKoder= {id:idKoder,name:nameKoder}
+    
+    for (let i = 0; i < listKoders.length; i++) {
+        if (newKoder.id===listKoders[i].id) {
+            return window.alert(`NO SE PUEDE AGREGAR KODER, EL ID ${newKoder.id} YA EXISTE`)
+        }
+    }
+    listKoders.push(newKoder)
+    updateTable()
+
+    //listKoders.push(newKoder)
+    //console.log(listKoders)
+    //updateTable()
+    //window.alert(`Se agrego de manera correcta el USUARIO:${nameKoder} con el ID:${idKoder}`)
  
-updateTable()
+}
+
+let addKoder=document.querySelector('.add-koder')
+addKoder.addEventListener('click', (event)=>{
+    event.preventDefault()
+    addNewKoder()
+})
+ 
