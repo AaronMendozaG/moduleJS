@@ -1,9 +1,20 @@
-img{
-    width: 10vw;
-}
+
 h1{
     text-align: center;
 }
+th.title{
+    text-align: center;
+    font-size: 20px;
+}
 th{
+    font-size: 20px;
+}
+table thead tr.table-sucess th{
+    font-size: 20px;
+}
+.img-album{
+    border-radius: 8px;
+}
+.album-title{
     text-align: center;
 }
