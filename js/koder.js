@@ -1,7 +1,4 @@
-let search = window.location.search
-let start = search.indexOf('=') + 1
-let idKoders = search.slice(start)
- 
+
 
 
 const printKoder = (arr) => {
@@ -23,81 +20,44 @@ const printKoder = (arr) => {
 }
 
 
-//let deleteKoderBtn = document.getElementById('btn-delete-koder')
-// if (deleteKoderBtn) {
-//    
-//    deleteKoderBtn.addEventListener('click',(e)=>{
-//        let idKoderObj=e.target.dataset.id
-//        console.log(idKoderObj)
-//        const requestDelete = new XMLHttpRequest()
-//        requestDelete.open('DELETE',`https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoderObj}.json`)
-//        requestDelete.addEventListener('readystatechange', () => {
-//         if(requestDelete.readyState !== 4) {
-//             return 
-//         } else {
-//             if(requestDelete.status >= 200 && requestDelete.status <= 299){
-//                 const response  = requestDelete
-//                 const objectResponse = JSON.parse(response.responseText)
-//                 console.log(objectResponse)
-//             } else {
-//                 console.log('No se pudo ejecutar')
-//             }
-//         } 
-//     })
-//     requestDelete.send()
-//    })
-// }
-
 
 let listkoders = document.querySelector('.list-koders tbody')
 listkoders.addEventListener('click', (e)=> {
-    e.preventDefault()
-    console.log(e.target.dataset.id)
+    
     if(e.target.classList.contains('deletekoder')) {
+        e.preventDefault()
         let idkoder = e.target.dataset.id
+        deleteKoderFetch(idkoder)
 
-        const requestDelete = new XMLHttpRequest()
-        requestDelete.open('DELETE',`https://python2gtest-default-rtdb.firebaseio.com/koders/${idkoder}.json`)
-        requestDelete.addEventListener('readystatechange', () => {
-            if(requestDelete.readyState !== 4) {
-                return 
-            } else {
-                if(requestDelete.status >= 200 && requestDelete.status <= 299){
-
-                    const objectResponse = JSON.parse(requestDelete.responseText)
-                    window.location.reload()
-                    
-                } else {
-                    console.log('No se pudo ejecutar')
-                }
-            } 
-        })
-        requestDelete.send()
+        
+        
         
     }
 })
 
 
 
+const getAllKodersFetch = () => {
+    // GET
+    fetch('https://python2gtest-default-rtdb.firebaseio.com/koders/.json').then(result => {
+        return result.json()
+    }).then(response => {
+        console.log('print koders')
+        printKoder(Object.entries(response))
+    })   
+}
+getAllKodersFetch()
 
-const request = new XMLHttpRequest()
-request.open('GET','https://python2gtest-default-rtdb.firebaseio.com/koders/.json')
-request.addEventListener('readystatechange', () => {
-    if(request.readyState !== 4) {
-        return 
-    } else {
-        if(request.status >= 200 && request.status <= 299){
-            const response  = request
-            const objectResponse = JSON.parse(response.responseText)
-            printKoder(Object.entries(objectResponse))
-        } else {
-            console.log('No se pudo ejecutar')
-        }
-    } 
-})
-request.send()
-
-
+const deleteKoderFetch=(idKoder)=>{
+    fetch(`https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,{
+        method:'DELETE'
+    }).then(result => {
+        return result.json()
+    }).then(response => {
+        window.location.reload()
+        console.log('Eliminado')
+    })   
+}
 
 
 

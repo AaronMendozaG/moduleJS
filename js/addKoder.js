@@ -14,26 +14,23 @@ addKoderBtn.addEventListener('click',()=>{
         age:ageKoder,
         position:positionKoder
     }
-    const request = new XMLHttpRequest()
-
- request.open('POST','https://python2gtest-default-rtdb.firebaseio.com/koders/.json')
- request.addEventListener('readystatechange', () => {
-     if(request.readyState !== 4) {
-         return 
-     } else {
-         if(request.status >= 200 && request.status <= 299){
-             const response  = request
-             const objectResponse = JSON.parse(response.responseText)
-             console.log(objectResponse)
-         } else {
-             console.log('No se pudo ejecutar')
-         }
-     } 
- })
- request.send(
-     JSON.stringify(newKoder)
- )
-
+    postKoderFetch(newKoder)
+     nameKoder=document.getElementById('name').value=''
+     lastName=document.getElementById('last-name').value=''
+     ageKoder=document.getElementById('age').value=''
+     positionKoder=document.getElementById('position').value=''
 })
+
+
+const postKoderFetch=(newKoder)=>{
+    fetch(`https://python2gtest-default-rtdb.firebaseio.com/koders/.json`,{
+        method:'POST',
+        body:JSON.stringify(newKoder)
+    }).then(result => {
+        return result.json()
+    }).then(response => {
+        console.log('Agregado')
+    })   
+}
 
 
