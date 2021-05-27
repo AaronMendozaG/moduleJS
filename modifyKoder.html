@@ -11,10 +11,12 @@
     <body>
 
         <div class="container">
-            <h1 class="text-center">ADD KODERS</h1>
+            <h1 class="text-center title-koder">KODER</h1>
             <div class="row">
                 <div class="col-12">
                     <form action="">
+                        <label for="name" class="form-label">ID</label>
+                        <input type="text" id="id-koder" class="form-control mb-3" disabled>
                         <label for="name" class="form-label">Nombre</label>
             <input type="text" id="name" class="form-control mb-3" >
 
@@ -27,7 +29,8 @@
             <label for="position" class="form-label">Puesto</label>
             <input type="text" id="position" class="form-control mb-3" >
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-lg mt-5" id="btn-modify-koder">Modificar</button>
+                <button type="button" class="btn btn-warning btn-lg mt-5" id="btn-modify-koder">Modificar</button>
+                <a href="/listKoders.html" type="button" class="btn  btn-success btn-lg mt-5 ms-3">Regresar</a>
             </div>
                     </form>
                 </div>

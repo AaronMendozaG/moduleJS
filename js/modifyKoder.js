@@ -15,16 +15,21 @@ const getAllKodersFetch = () => {
                 return  koder
             }
         })[0][1]
-        console.log(koderObject)
-        const printKoder = (objkoder) => {
+        let koderKey = Object.entries(response).filter((koder)=> {
+            if(koder[0] === idKoder){
+                return  koder
+            }
+        })[0]
+        const printKoder = (objkoder,koderKey) => {
             let {name,lastName,age,position}= objkoder
+            document.getElementById('id-koder').value=koderKey[0]
             document.getElementById('name').value=name
             document.getElementById('last-name').value=lastName
             document.getElementById('age').value=age
             document.getElementById('position').value=position
         }
         
-        printKoder(koderObject)
+        printKoder(koderObject,koderKey)
     })   
 }
 getAllKodersFetch()
@@ -56,8 +61,8 @@ const putKoderFetch= (idKoder,newKoder)=>{
     }).then(result => {
         return result.json()
     }).then(response => {
-        console.log('Eliminado')
-    })   
+        window.alert('KODER MODIFICADO CORRECTAMENTE')
+    }) 
 }
 
 

@@ -29,7 +29,7 @@ const postKoderFetch=(newKoder)=>{
     }).then(result => {
         return result.json()
     }).then(response => {
-        console.log('Agregado')
+        window.alert('KODER AGREGADO')
     })   
 }
 

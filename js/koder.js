@@ -8,8 +8,8 @@ const printKoder = (arr) => {
         <tr>
         <td scope="row">${index+1}</td>
         <td>${koder[1].name}</td>
-        <td><a href="/modifyKoder.html?id=${koder[0]}" class="btn btn-outline-info pr-4">Editar</a></td>
-        <td><a href="" class="btn btn-outline-info pr-4 deletekoder"  data-id="${koder[0]}">Eliminar</a></td>
+        <td><a href="/modifyKoder.html?id=${koder[0]}" class="btn btn-outline-warning pr-4">Editar</a></td>
+        <td><a href="" class="btn btn-outline-danger pr-4 deletekoder"  data-id="${koder[0]}">Eliminar</a></td>
         </tr>
         
         `
