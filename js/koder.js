@@ -39,15 +39,30 @@ $(()=> {
     // }
     // getAllKodersFetch()
 
+    //OBTENERS KODERS CON JQUERY
+    // const getAllKodersJquery = () => {
+    //     $.get('https://python2gtest-default-rtdb.firebaseio.com/koders.json', function (response){
+    //             if (response != null) {
+    //                 printKoder(Object.entries(response)) 
+    //             }
+    //         })
+    // }
+    // getAllKodersJquery()
 
-    const getAllKodersJquery = () => {
-        $.get('https://python2gtest-default-rtdb.firebaseio.com/koders.json', function (response){
-                if (response != null) {
-                    printKoder(Object.entries(response)) 
-                }
-            })
+    async function fetchingData (){
+        try {
+    
+            let koders = await $.get('https://python2gtest-default-rtdb.firebaseio.com/koders.json')
+            printKoder(Object.entries(koders))
+    
+        } catch (error) {
+            console.log(error)
+            console.log(error.message)
+        }
+        
+        // console.log(posts,comments,albums)
     }
-    getAllKodersJquery()
+    fetchingData()
 
 
     
@@ -70,27 +85,60 @@ $(()=> {
 
 
     //ELIMINAR KODER CON AJAX Y JQUERY
-    const deleteKoderAjaxJquery=(idKoder)=>{
-        $.ajax({
-            url : `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
-            method: 'DELETE',
-            dataType : 'json',
-            success : function(response) {
-                console.log(response)
-                //getAllKodersJquery()
-                window.alert('ELIMINADO CON EXITO')
-                //SE RECARGA LA PAGINA CADA QUE SE ELIMINE
-                window.location.reload()
-            },
-            error : function(xhr) {
-                //console.log(xhr)
-            },
-            complete : function(xhr, status) {
-                //console.log(xhr, status)
-            }
-        });
+    // const deleteKoderAjaxJquery=(idKoder)=>{
+        // $.ajax({
+        //     url : `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
+        //     method: 'DELETE',
+        //     dataType : 'json',
+        //     success : function(response) {
+        //         console.log(response)
+        //         //getAllKodersJquery()
+        //         window.alert('ELIMINADO CON EXITO')
+        //         //SE RECARGA LA PAGINA CADA QUE SE ELIMINE
+        //         window.location.reload()
+        //     },
+        //     error : function(xhr) {
+        //         //console.log(xhr)
+        //     },
+        //     complete : function(xhr, status) {
+        //         //console.log(xhr, status)
+        //     }
+        // });
 
+    // }
+    async function deleteKoderAjaxJqueryAsync (idKoder){
+        try {
+    
+            let deleteKoder = await $.ajax({
+                url : `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
+                method: 'DELETE',
+                dataType : 'json',
+                success : function(response) {
+                    console.log(response)
+                    //getAllKodersJquery()
+                    window.alert('ELIMINADO CON EXITO')
+                    //SE RECARGA LA PAGINA CADA QUE SE ELIMINE
+                    window.location.reload()
+                },
+                error : function(xhr) {
+                    //console.log(xhr)
+                },
+                complete : function(xhr, status) {
+                    //console.log(xhr, status)
+                }
+            });
+
+            return deleteKoder
+            
+    
+        } catch (error) {
+            console.log(error)
+            console.log(error.message)
+        }
+        
+        // console.log(posts,comments,albums)
     }
+    
 
     // $('.list-koders tbody').click((e)=>{
     //     if(e.target.classList.contains('deletekoder')) {
@@ -102,7 +150,8 @@ $(()=> {
     $('.list-koders tbody').on('click','.deletekoder',function(e){
         e.preventDefault()
         let idkoder=$(this).attr('data-id')
-        deleteKoderAjaxJquery(idkoder)
+        //deleteKoderAjaxJquery(idkoder)
+        deleteKoderAjaxJqueryAsync(idkoder)
     })
 
 })

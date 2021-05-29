@@ -9,33 +9,68 @@ $(document).ready(function () {
     
     
     
-    const getAllKodersFetch = () => {
-        // GET
+    // const getAllKodersFetch = () => {
+    //     // GET
 
-        $.get('https://python2gtest-default-rtdb.firebaseio.com/koders.json', function (response){
-        let koderObject = Object.entries(response).filter((koder)=> {
-            if(koder[0] === idKoder){
-                return  koder
+    //     $.get('https://python2gtest-default-rtdb.firebaseio.com/koders.json', function (response){
+        // let koderObject = Object.entries(response).filter((koder)=> {
+        //     if(koder[0] === idKoder){
+        //         return  koder
+        //     }
+        // })[0][1]
+        // let koderKey = Object.entries(response).filter((koder)=> {
+        //     if(koder[0] === idKoder){
+        //         return  koder
+        //     }
+        // })[0]
+        // const printKoder = (objkoder,koderKey) => {
+        //     let {name,lastName,age,position}= objkoder
+        //     $('#id-koder').val(koderKey[0])
+        //     $('#name').val(name)
+        //     $('#last-name').val(lastName)
+        //     $('#age').val(age)
+        //     $('#position').val(position)
+        // }
+        
+        // printKoder(koderObject,koderKey)
+    // })    
+    // }
+    // getAllKodersFetch()
+
+    async function getAllKodersFetchAsync(){
+        try {
+    
+            let koders = await $.get('https://python2gtest-default-rtdb.firebaseio.com/koders.json')
+            let koderObject = Object.entries(koders).filter((koder)=> {
+                if(koder[0] === idKoder){
+                    return  koder
+                }
+            })[0][1]
+            let koderKey = Object.entries(koders).filter((koder)=> {
+                if(koder[0] === idKoder){
+                    return  koder
+                }
+            })[0]
+            const printKoder = (objkoder,koderKey) => {
+                let {name,lastName,age,position}= objkoder
+                $('#id-koder').val(koderKey[0])
+                $('#name').val(name)
+                $('#last-name').val(lastName)
+                $('#age').val(age)
+                $('#position').val(position)
             }
-        })[0][1]
-        let koderKey = Object.entries(response).filter((koder)=> {
-            if(koder[0] === idKoder){
-                return  koder
-            }
-        })[0]
-        const printKoder = (objkoder,koderKey) => {
-            let {name,lastName,age,position}= objkoder
-            $('#id-koder').val(koderKey[0])
-            $('#name').val(name)
-            $('#last-name').val(lastName)
-            $('#age').val(age)
-            $('#position').val(position)
+            
+            printKoder(koderObject,koderKey)
+            
+    
+        } catch (error) {
+            console.log(error)
+            console.log(error.message)
         }
         
-        printKoder(koderObject,koderKey)
-    })    
+        // console.log(posts,comments,albums)
     }
-    getAllKodersFetch()
+    getAllKodersFetchAsync()
     
      $('#btn-modify-koder').click(()=>{
         let nameKoder=$('#name').val()
@@ -53,6 +88,7 @@ $(document).ready(function () {
             position:positionKoder
         }
      
+        //putKoderAjaxJquery(idKoder,newKoder)
         putKoderAjaxJquery(idKoder,newKoder)
 
 
@@ -74,24 +110,54 @@ $(document).ready(function () {
 
 
     //EDIT KODER JQUERY
-    const putKoderAjaxJquery= (idKoder,newKoder)=>{
+    // const putKoderAjaxJquery= (idKoder,newKoder)=>{
 
-        $.ajax({
-            url: `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
-            method:'PUT',
-            data: JSON.stringify(newKoder),
-            dataType: '',
-            success: function(response) {
-                window.alert('KODER MODIFICADO CON EXITO')
-            },
-            error: function(xhr){
-                console.log(xhr)
-            },
-            complete: function(xhr){
-                // console.log(xhr)
-            },
-        })
+        // $.ajax({
+        //     url: `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
+        //     method:'PUT',
+        //     data: JSON.stringify(newKoder),
+        //     dataType: '',
+        //     success: function(response) {
+        //         window.alert('KODER MODIFICADO CON EXITO')
+        //     },
+        //     error: function(xhr){
+        //         console.log(xhr)
+        //     },
+        //     complete: function(xhr){
+        //         // console.log(xhr)
+        //     },
+        // })
+    // }
+
+    //ASYNC AWAIT
+    async function putKoderAjaxJquery (idKoder,newKoder){
+        try {
+    
+            let koders = await $.ajax({
+                url: `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
+                method:'PUT',
+                data: JSON.stringify(newKoder),
+                dataType: '',
+                success: function() {
+                    window.alert('KODER MODIFICADO CON EXITO')
+                },
+                error: function(xhr){
+                    console.log(xhr)
+                },
+                complete: function(xhr){
+                    // console.log(xhr)
+                },
+            })
+            return koders
+    
+        } catch (error) {
+            console.log(error)
+            console.log(error.message)
+        }
+        
+        // console.log(posts,comments,albums)
     }
+    
     
 
 
