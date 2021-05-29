@@ -1,8 +1,11 @@
 $(document).ready(function () {
+    //OBTENER ID DE  FORMA TRADICIONAL, CON EL ARRAY OBTENIDO DEL SEARCH
+    // let search = window.location.search
+    // let start = search.indexOf('=') + 1
+    // let idKoder = search.slice(start)
 
-    let search = window.location.search
-    let start = search.indexOf('=') + 1
-    let idKoder = search.slice(start)
+    const params = new URLSearchParams(window.location.search)
+    let idKoder = params.get('id')
     
     
     
@@ -10,7 +13,6 @@ $(document).ready(function () {
         // GET
 
         $.get('https://python2gtest-default-rtdb.firebaseio.com/koders.json', function (response){
-        console.log(response)
         let koderObject = Object.entries(response).filter((koder)=> {
             if(koder[0] === idKoder){
                 return  koder
@@ -38,9 +40,9 @@ $(document).ready(function () {
      $('#btn-modify-koder').click(()=>{
         let nameKoder=$('#name').val()
         let lastName=$('#last-name').val()
-        let ageKoder=$('#age').val()
+        let ageKoder=parseInt($('#age').val())
         let positionKoder=$('#position').val()
-        if (nameKoder=='' || lastName == '' || ageKoder=='' || position=='') {
+        if (nameKoder=='' || lastName == '' || ageKoder=='' || positionKoder=='') {
             window.alert('Ingresa todos los datos solicitados' )
             return
         }
@@ -51,23 +53,46 @@ $(document).ready(function () {
             position:positionKoder
         }
      
-        putKoderFetch(idKoder,newKoder)
+        putKoderAjaxJquery(idKoder,newKoder)
 
 
      })
     
-    const putKoderFetch= (idKoder,newKoder)=>{
-        fetch(`https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,{
+     //EDIT KODER FETCH
+    // const putKoderFetch= (idKoder,newKoder)=>{
+    //     fetch(`https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,{
+    //         method:'PUT',
+    //         body:JSON.stringify(newKoder)
+    //     }).then(result => {
+    //         return result.json()
+    //     }).then(response => {
+    //         window.alert('KODER MODIFICADO CORRECTAMENTE')
+    //     }).catch(function(error){
+    //         console.log(error.message)
+    //     })    
+    // }
+
+
+    //EDIT KODER JQUERY
+    const putKoderAjaxJquery= (idKoder,newKoder)=>{
+
+        $.ajax({
+            url: `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
             method:'PUT',
-            body:JSON.stringify(newKoder)
-        }).then(result => {
-            return result.json()
-        }).then(response => {
-            window.alert('KODER MODIFICADO CORRECTAMENTE')
-        }).catch(function(error){
-            console.log(error.message)
-        })    
+            data: JSON.stringify(newKoder),
+            dataType: '',
+            success: function(response) {
+                window.alert('KODER MODIFICADO CON EXITO')
+            },
+            error: function(xhr){
+                console.log(xhr)
+            },
+            complete: function(xhr){
+                // console.log(xhr)
+            },
+        })
     }
+    
 
 
 

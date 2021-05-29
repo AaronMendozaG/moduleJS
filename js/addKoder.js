@@ -3,7 +3,7 @@ $(document).ready(function () {
 
         let nameKoder=$('#name').val()
             let lastName=$('#last-name').val()
-            let ageKoder=$('#age').val()
+            let ageKoder=parseInt($('#age').val())
             let positionKoder=$('#position').val()
         if (nameKoder=='' || lastName == '' || ageKoder=='' || positionKoder=='') {
             window.alert('Ingresa todos los datos solicitados' )
