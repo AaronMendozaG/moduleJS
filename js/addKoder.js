@@ -15,6 +15,7 @@ $(document).ready(function () {
             age:ageKoder,
             position:positionKoder
         }
+       
         //postKoderFetch(newKoder)
         //postKoderJquery(newKoder)
         postKoderAsync(newKoder)

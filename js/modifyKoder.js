@@ -1,3 +1,68 @@
+$('#btn-modify-koder').click(()=>{
+    let nameKoder=$('#name').val()
+    let lastName=$('#last-name').val()
+    let ageKoder=parseInt($('#age').val())
+    let positionKoder=$('#position').val()
+    if (nameKoder=='' || lastName == '' || ageKoder=='' || positionKoder=='') {
+        window.alert('Ingresa todos los datos solicitados' )
+        return
+    }
+    let newKoder={
+        name:nameKoder,
+        lastName:lastName,
+        age:ageKoder,
+        position:positionKoder
+    }
+ 
+    //putKoderAjaxJquery(idKoder,newKoder)
+    putKoderAjaxJquery(idKoder,newKoder)
+
+
+ })
+
+ //EDIT KODER FETCH
+// const putKoderFetch= (idKoder,newKoder)=>{
+//     fetch(`https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,{
+//         method:'PUT',
+//         body:JSON.stringify(newKoder)
+//     }).then(result => {
+//         return result.json()
+//     }).then(response => {
+//         window.alert('KODER MODIFICADO CORRECTAMENTE')
+//     }).catch(function(error){
+//         console.log(error.message)
+//     })    
+// }
+
+
+//EDIT KODER JQUERY
+// const putKoderAjaxJquery= (idKoder,newKoder)=>{
+
+    // $.ajax({
+    //     url: `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
+    //     method:'PUT',
+    //     data: JSON.stringify(newKoder),
+    //     dataType: '',
+    //     success: function(response) {
+    //         window.alert('KODER MODIFICADO CON EXITO')
+    //     },
+    //     error: function(xhr){
+    //         console.log(xhr)
+    //     },
+    //     complete: function(xhr){
+    //         // console.log(xhr)
+    //     },
+    // })
+// }
+
+
+
+
+
+
+
+
+
 $(document).ready(function () {
     //OBTENER ID DE  FORMA TRADICIONAL, CON EL ARRAY OBTENIDO DEL SEARCH
     // let search = window.location.search
@@ -43,7 +108,7 @@ $(document).ready(function () {
             let koders = await $.get('https://python2gtest-default-rtdb.firebaseio.com/koders.json')
             let koderObject = Object.entries(koders).filter((koder)=> {
                 if(koder[0] === idKoder){
-                    return  koder
+                    return  koder 
                 }
             })[0][1]
             let koderKey = Object.entries(koders).filter((koder)=> {
@@ -72,62 +137,7 @@ $(document).ready(function () {
     }
     getAllKodersFetchAsync()
     
-     $('#btn-modify-koder').click(()=>{
-        let nameKoder=$('#name').val()
-        let lastName=$('#last-name').val()
-        let ageKoder=parseInt($('#age').val())
-        let positionKoder=$('#position').val()
-        if (nameKoder=='' || lastName == '' || ageKoder=='' || positionKoder=='') {
-            window.alert('Ingresa todos los datos solicitados' )
-            return
-        }
-        let newKoder={
-            name:nameKoder,
-            lastName:lastName,
-            age:ageKoder,
-            position:positionKoder
-        }
      
-        //putKoderAjaxJquery(idKoder,newKoder)
-        putKoderAjaxJquery(idKoder,newKoder)
-
-
-     })
-    
-     //EDIT KODER FETCH
-    // const putKoderFetch= (idKoder,newKoder)=>{
-    //     fetch(`https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,{
-    //         method:'PUT',
-    //         body:JSON.stringify(newKoder)
-    //     }).then(result => {
-    //         return result.json()
-    //     }).then(response => {
-    //         window.alert('KODER MODIFICADO CORRECTAMENTE')
-    //     }).catch(function(error){
-    //         console.log(error.message)
-    //     })    
-    // }
-
-
-    //EDIT KODER JQUERY
-    // const putKoderAjaxJquery= (idKoder,newKoder)=>{
-
-        // $.ajax({
-        //     url: `https://python2gtest-default-rtdb.firebaseio.com/koders/${idKoder}.json`,
-        //     method:'PUT',
-        //     data: JSON.stringify(newKoder),
-        //     dataType: '',
-        //     success: function(response) {
-        //         window.alert('KODER MODIFICADO CON EXITO')
-        //     },
-        //     error: function(xhr){
-        //         console.log(xhr)
-        //     },
-        //     complete: function(xhr){
-        //         // console.log(xhr)
-        //     },
-        // })
-    // }
 
     //ASYNC AWAIT
     async function putKoderAjaxJquery (idKoder,newKoder){
